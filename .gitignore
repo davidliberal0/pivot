@@ -1,0 +1,68 @@
+# ===========================
+# Node / General
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+backend/.env
+frontend/.env
+
+# ===========================
+# OS / Editor
+# ===========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ===========================
+# Build Artifacts
+# ===========================
+dist/
+build/
+out/
+coverage/
+.tmp/
+
+# ===========================
+# React Native / Expo
+# ===========================
+# Metro / cache files
+.expo/
+.expo-shared/
+.expo/*
+.expo-shared/*
+.expo-packager-cache/
+.expo-web/
+.expo-go/
+
+# Android
+android/app/build/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/release/
+
+# iOS
+ios/build/
+ios/Pods/
+ios/*.xcworkspace
+ios/Podfile.lock
+
+# ===========================
+# Miscellaneous
+# ===========================
+*.log
+*.pid
+*.seed
+*.tgz
+*.lock
+*.zip
