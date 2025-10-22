@@ -8,6 +8,13 @@ yarn-error.log*
 pnpm-debug.log*
 
 # ===========================
+# TypeScript build outputs
+# ===========================
+backend/dist/
+frontend/.expo/
+*.tsbuildinfo
+
+# ===========================
 # Environment Variables
 # ===========================
 .env
@@ -24,38 +31,12 @@ Thumbs.db
 *.swp
 
 # ===========================
-# Build Artifacts
-# ===========================
-dist/
-build/
-out/
-coverage/
-.tmp/
-
-# ===========================
 # React Native / Expo
 # ===========================
-# Metro / cache files
 .expo/
 .expo-shared/
-.expo/*
-.expo-shared/*
-.expo-packager-cache/
-.expo-web/
-.expo-go/
-
-# Android
-android/app/build/
-android/.gradle/
-android/.idea/
-android/local.properties
-android/app/release/
-
-# iOS
-ios/build/
-ios/Pods/
-ios/*.xcworkspace
-ios/Podfile.lock
+android/
+ios/
 
 # ===========================
 # Miscellaneous
