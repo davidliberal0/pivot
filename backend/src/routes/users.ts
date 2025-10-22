@@ -8,8 +8,7 @@ let users: User[] = [
   {
     id: 1,
     name: "David Liberal",
-    email: "david@example.com",
-    interests: ["coding", "gym"],
+    major: "Computer Science",
   },
 ];
 
@@ -23,8 +22,7 @@ router.post("/", (req: Request, res: Response) => {
   const newUser: User = {
     id: users.length + 1,
     name: req.body.name,
-    email: req.body.email,
-    interests: req.body.interests || [],
+    major: req.body.major,
   };
 
   users.push(newUser);

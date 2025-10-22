@@ -1,6 +1,5 @@
 export interface User {
   id: number;
   name: string;
-  email: string;
-  interests?: string[];
+  major: string;
 }
