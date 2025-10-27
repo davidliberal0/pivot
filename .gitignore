@@ -48,3 +48,6 @@ ios/
 *.tgz
 *.lock
 *.zip
+
+
+backend/firebase-key.json
