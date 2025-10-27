@@ -1,7 +1,8 @@
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
+  location: string;
   major: string;
   interests?: Array<string>;
 }

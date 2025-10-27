@@ -1,36 +1,51 @@
 import { Router, Request, Response } from "express";
+import { db } from "../firebase";
 import { User } from "../types/user";
 
 const router = Router();
-
-// temp in memory database
-let users: User[] = [
-  {
-    id: 1,
-    name: "David Liberal",
-    email: "david@email.com",
-    major: "Computer Science",
-    interests: ["gym", "hiking"],
-  },
-];
+const usersCollection = db.collection("users");
 
 // GET route - return all users
-router.get("/", (req: Request, res: Response) => {
-  res.json(users);
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const snapshot = await usersCollection.get();
+    const users = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    res.json(users);
+  } catch (error) {
+    console.error(`Error fetching users: ${error}`);
+    res.status(500).send("Failed to fetch users");
+  }
 });
 
-// POST /users - add a new user
-router.post("/", (req: Request, res: Response) => {
-  const newUser: User = {
-    id: users.length + 1,
-    name: req.body.name,
-    email: req.body.email,
-    major: req.body.major,
-    interests: req.body.interests || [],
-  };
+// POST /users → add new user
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    const { name, email, location, major, interests } = req.body;
 
-  users.push(newUser);
-  res.status(201).json(newUser);
+    // Validate required fields
+    if (!name || !email || !location || !major) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const newUser: Omit<User, "id"> = {
+      name,
+      email,
+      location,
+      major,
+      interests,
+    };
+
+    const docRef = await usersCollection.add(newUser);
+    const user: User = { id: docRef.id, ...newUser };
+
+    res.status(201).json(user);
+  } catch (error) {
+    console.error("Error adding user:", error);
+    res.status(500).send("Failed to add user");
+  }
 });
 
 export default router;
