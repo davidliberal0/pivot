@@ -23,15 +23,16 @@ router.get("/", async (req: Request, res: Response) => {
 // POST /users → add new user
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const { name, email, location, major, interests } = req.body;
+    const { username, fullname, email, location, major, interests } = req.body;
 
     // Validate required fields
-    if (!name || !email || !location || !major) {
+    if (!username || !fullname || !email || !location || !major) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
     const newUser: Omit<User, "id"> = {
-      name,
+      username,
+      fullname,
       email,
       location,
       major,
